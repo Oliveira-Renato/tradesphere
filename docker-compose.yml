@@ -1,0 +1,61 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: tradesphere-app
+    restart: unless-stopped
+    tty: true
+    working_dir: /var/www
+    volumes:
+      - .:/var/www
+    networks:
+      - tradesphere-network
+
+  webserver:
+    image: nginx:alpine
+    container_name: tradesphere-web
+    restart: unless-stopped
+    ports:
+      - "8000:80"
+    volumes:
+      - .:/var/www
+      - ./docker-conf/nginx/conf.d:/etc/nginx/conf.d
+    depends_on:
+      - app
+    networks:
+      - tradesphere-network
+
+  db:
+    image: postgres:15-alpine
+    container_name: tradesphere-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_DATABASE:-tradesphere}
+      POSTGRES_USER: ${DB_USERNAME:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-secret123}
+    ports:
+      - "5432:5432"
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+    networks:
+      - tradesphere-network
+
+  node:
+    image: node:20-alpine
+    container_name: tradesphere-node
+    working_dir: /var/www
+    volumes:
+      - .:/var/www
+    ports:
+      - "5173:5173"
+    networks:
+      - tradesphere-network
+
+networks:
+  tradesphere-network:
+    driver: bridge
+
+volumes:
+  dbdata:
+    driver: local
