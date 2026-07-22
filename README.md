@@ -1,59 +1,119 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🚀 TradeSphere
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+> Sistema de gerenciamento de estoque multi-tenant desenvolvido com Laravel 12, Vue 3, PostgreSQL e Docker.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Sobre o Projeto
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+O TradeSphere é uma plataforma de gerenciamento de estoque projetada para ambientes multi-tenant, construída utilizando tecnologias modernas e uma arquitetura baseada em containers.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+A infraestrutura foi desenvolvida para proporcionar isolamento entre serviços, facilidade de implantação e persistência de dados, utilizando Docker Compose como orquestrador da aplicação.
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+# Tecnologias
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- Laravel 12
+- PHP 8.3 FPM
+- Vue 3
+- Vite
+- PostgreSQL 15
+- Docker Compose
+- Nginx Alpine
+- Node.js 20
 
-## Laravel Sponsors
+---
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+# Arquitetura
 
-### Premium Partners
+A aplicação é composta por quatro serviços independentes.
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+| Serviço | Tecnologia | Função |
+|----------|------------|--------|
+| app | PHP 8.3 FPM | Processamento da aplicação Laravel |
+| webserver | Nginx Alpine | Reverse Proxy e servidor web |
+| db | PostgreSQL 15 | Persistência dos dados |
+| node | Node.js 20 | Ambiente de desenvolvimento Vue 3 |
 
-## Contributing
+Todos os containers comunicam-se através de uma rede Docker dedicada.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+---
 
-## Code of Conduct
+# Estrutura da Documentação
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+A documentação técnica encontra-se na pasta **docs**.
 
-## Security Vulnerabilities
+| Documento | Descrição |
+|------------|-----------|
+| architecture.md | Arquitetura geral do sistema |
+| docker.md | Infraestrutura Docker |
+| database.md | Persistência de dados |
+| api.md | Backend Laravel |
+| deployment.md | Processo de implantação |
+| tenancy.md | Arquitetura Multi-Tenant |
+| decisions.md | Decisões arquiteturais |
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+---
 
-## License
+# Instalação
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 1. Subir os containers
+
+```bash
+docker compose up -d
+```
+
+## 2. Instalar dependências do Laravel
+
+```bash
+docker compose exec app composer install
+```
+
+## 3. Gerar a chave da aplicação
+
+```bash
+docker compose exec app php artisan key:generate
+```
+
+## 4. Executar as migrations
+
+```bash
+docker compose exec app php artisan migrate
+```
+
+## 5. Instalar dependências do Front-end
+
+```bash
+docker compose exec node npm install
+```
+
+## 6. Executar o Vite
+
+```bash
+docker compose exec node npm run dev
+```
+
+---
+
+# Estrutura da Infraestrutura
+
+```
+TradeSphere
+
+├── app
+├── docker
+├── docs
+├── resources
+├── routes
+├── docker-compose.yml
+└── README.md
+```
+
+---
+
+# Autor
+
+Renato Oliveira
+
+Projeto desenvolvido para fins acadêmicos e demonstração de arquitetura de software.
