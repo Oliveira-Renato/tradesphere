@@ -10,7 +10,7 @@ A aplicação utiliza o Docker Compose para orquestrar todos os serviços necess
 
 ---
 
-# Objetivos da Arquitetura
+### Objetivos da Arquitetura
 
 A arquitetura do TradeSphere foi projetada com os seguintes objetivos:
 
@@ -23,7 +23,7 @@ A arquitetura do TradeSphere foi projetada com os seguintes objetivos:
 
 ---
 
-# Componentes da Arquitetura
+### Componentes da Arquitetura
 
 A infraestrutura é composta por quatro serviços independentes.
 
@@ -38,7 +38,7 @@ Cada serviço possui uma responsabilidade específica, evitando o acúmulo de fu
 
 ---
 
-# Comunicação entre os Serviços
+### Comunicação entre os Serviços
 
 A comunicação entre os containers ocorre através de uma rede Docker dedicada.
 
@@ -54,7 +54,7 @@ Essa abordagem elimina a necessidade de expor serviços internos diretamente par
 
 ---
 
-# Fluxo da Aplicação
+### Fluxo da Aplicação
 
 O fluxo básico da infraestrutura pode ser representado da seguinte forma:
 
@@ -83,7 +83,7 @@ O ambiente Node.js é utilizado exclusivamente durante o desenvolvimento da inte
 
 ---
 
-# Organização da Infraestrutura
+### Organização da Infraestrutura
 
 A arquitetura foi organizada para manter cada responsabilidade isolada.
 
@@ -96,7 +96,7 @@ Essa divisão favorece a manutenção da infraestrutura e facilita a evolução 
 
 ---
 
-# Considerações
+### Considerações
 
 A utilização de containers independentes proporciona um ambiente padronizado, reduz diferenças entre ambientes de desenvolvimento e facilita a reprodução da infraestrutura em diferentes máquinas.
 
