@@ -12,7 +12,7 @@ A infraestrutura foi desenvolvida para proporcionar isolamento entre serviços, 
 
 ---
 
-# Tecnologias
+### Tecnologias
 
 - Laravel 12
 - PHP 8.3 FPM
@@ -25,7 +25,7 @@ A infraestrutura foi desenvolvida para proporcionar isolamento entre serviços, 
 
 ---
 
-# Arquitetura
+### Arquitetura
 
 A aplicação é composta por quatro serviços independentes.
 
@@ -40,7 +40,7 @@ Todos os containers comunicam-se através de uma rede Docker dedicada.
 
 ---
 
-# Estrutura da Documentação
+### Estrutura da Documentação
 
 A documentação técnica encontra-se na pasta **docs**.
 
@@ -56,39 +56,39 @@ A documentação técnica encontra-se na pasta **docs**.
 
 ---
 
-# Instalação
+### Instalação
 
-## 1. Subir os containers
+#### 1. Subir os containers
 
 ```bash
 docker compose up -d
 ```
 
-## 2. Instalar dependências do Laravel
+#### 2. Instalar dependências do Laravel
 
 ```bash
 docker compose exec app composer install
 ```
 
-## 3. Gerar a chave da aplicação
+#### 3. Gerar a chave da aplicação
 
 ```bash
 docker compose exec app php artisan key:generate
 ```
 
-## 4. Executar as migrations
+#### 4. Executar as migrations
 
 ```bash
 docker compose exec app php artisan migrate
 ```
 
-## 5. Instalar dependências do Front-end
+#### 5. Instalar dependências do Front-end
 
 ```bash
 docker compose exec node npm install
 ```
 
-## 6. Executar o Vite
+#### 6. Executar o Vite
 
 ```bash
 docker compose exec node npm run dev
@@ -96,7 +96,7 @@ docker compose exec node npm run dev
 
 ---
 
-# Estrutura da Infraestrutura
+### Estrutura da Infraestrutura
 
 ```
 TradeSphere
@@ -112,7 +112,7 @@ TradeSphere
 
 ---
 
-# Autor
+## Autor
 
 Renato Oliveira
 
