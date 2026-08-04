@@ -19,16 +19,10 @@ class StockController
             ->orderBy('created_at', 'desc')
             ->get();
 
-        // Se a requisição vier do Inertia (Frontend Vue 3)
-        if (request()->header('X-Inertia')) {
-            return Inertia::render('Welcome', [
-                'user' => 'Renato',
-                'products' => $products,
-            ]);
-        }
-
-        // Retorno em JSON puro para consumo via API
-        return response()->json($products);
+        return Inertia::render('Welcome', [
+            'user' => 'Renato',
+            'products' => $products,
+        ]);
     }
 
     /**
