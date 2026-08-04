@@ -1,11 +1,6 @@
 <?php
 
+use App\Http\Controllers\StockController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-      'user' => 'Renato',
-      'status' => 'Conectado ao PostgreSQL com sucesso!'
-    ]);
-});
+Route::get('/', [StockController::class, 'index'])->name('stock.index');
